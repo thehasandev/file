@@ -1,0 +1,36 @@
+import { Icon } from "@bfirst/components-icon";
+import { HCF } from "@bfirst/components-layout";
+import { FeatureStoryCreate } from "@bfirst/components-stories";
+import { Breadcrumbs } from "@bfirst/material-tailwind";
+import { Link, useNavigate } from "react-router-dom";
+
+export default function StoryAdd() {
+  const navigate = useNavigate();
+  const added = () => {
+    navigate("/stories");
+  };
+
+  const onError = (error: any) => {
+    console.log("error", error);
+  };
+
+  return (
+    <HCF>
+      <HCF.Header>
+        <div className="flex flex-row w-full justify-between">
+          <Breadcrumbs>
+            <Link to="/">
+              <Icon name="home" variant="text" />
+            </Link>
+            <Link to="/stories">Stories</Link>
+            <Link to="">Create Story</Link>
+          </Breadcrumbs>
+        </div>
+      </HCF.Header>
+      <HCF.Content>
+        <FeatureStoryCreate onSuccess={added} onError={onError} />
+      </HCF.Content>
+    </HCF>
+  );
+}
+
